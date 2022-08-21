@@ -1,0 +1,16 @@
+from woocommerce import API
+import json
+
+wcapi = API(
+    url="http://3.213.111.125/",
+    consumer_key="ck_068cc01a6b275c122e866056bfe6b35c267f06ee",
+    consumer_secret="cs_60096de6bd02568d548bee5c58e3aaca751012df",
+    version="wc/v3"
+)
+r = wcapi.get("products", params={'per_page': 100}).json()
+
+for i in range(0, 680):
+    data = { 'regular_price': "100000.00"}
+
+    x = wcapi.put("products/"+str(r[i]['id']), data).json()
+    print (x)
